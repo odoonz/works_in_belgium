@@ -2,22 +2,8 @@
 Bank St Line Percentage Fix
 ===========================
 
-Allocates teh percentage of the statement line
+Allocates the percentage of the statement line residual when that option is
+selected rather than the residual remaining from from previous matches in same model.
 
-Configuration
-=============
+This allows much cleaner reconciliation models
 
-To configure this module, you need to:
-
-#. Go to ...
-
-Usage
-=====
-
-To use this module, you need to:
-
-#. Go to ...
-
-
-Changelog
-=========
