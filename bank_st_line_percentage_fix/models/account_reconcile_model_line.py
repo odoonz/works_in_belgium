@@ -6,6 +6,14 @@ from odoo import _, api, fields, models
 
 class AccountReconcileModelLine(models.Model):
 
+    _inherit = "account.reconcile.model"
+
+    def _apply_lines_for_bank_widget(self, residual_amount_currency, partner, st_line):
+        self = self.with_context(residual_amount_currency=residual_amount_currency)
+        return super()._apply_lines_for_bank_widget(residual_amount_currency, partner, st_line)
+
+
+class AccountReconcileModelLine(models.Model):
     _inherit = "account.reconcile.model.line"
 
     def _apply_in_bank_widget(self, residual_amount_currency, partner, st_line):
@@ -19,7 +27,6 @@ class AccountReconcileModelLine(models.Model):
         :return:                            A python dictionary.
         """
         self.ensure_one()
-        # TODO: This is possibly not multicurrency safe
-        if self.amount_type == 'percentage_st_line':
-            residual_amount_currency = st_line.amount_residual
+        if self.amount_type == 'percentage_st_line' and self._context.get('residual_amount_currency', 0.0):
+            residual_amount_currency = self._context.get('residual_amount_currency', 0.0)
         return super()._apply_in_bank_widget(residual_amount_currency, partner, st_line)
