@@ -9,7 +9,6 @@
     "license": "AGPL-3",
     "author": "MoaHub Ltd",
     "website": "https://github.com/odoonz/odoonz-addons",
-    "depends": ["l10n_nz"],
+    "depends": ["account_reports", "l10n_nz"],
     "auto_install": True,
-    "installable": False,
 }
